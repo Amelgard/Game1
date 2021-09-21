@@ -104,7 +104,7 @@ public class PlayerControl : MonoBehaviour
     float Dash()
     {
         float dashForce;
-        if ((stamina >= 20) && (Input.GetKeyDown(KeyCode.LeftShift)))
+        if ((stamina >= 20) && (Input.GetKeyDown(KeyCode.LeftShift) && (Input.GetKey("a") || Input.GetKey("w") || Input.GetKey("s")||Input.GetKey("d"))))
         {
             stamina -= 20;
             dashForceRollback = 0;
