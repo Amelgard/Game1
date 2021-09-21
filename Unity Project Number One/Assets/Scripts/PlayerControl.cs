@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
     public GameObject playerBody;
-    public bool bodyExist;
-    public float speed;
+    bool bodyExist;
+    float defoltSpeed, speed;
 
     Animator bodyAnimator;
 
-    public Image helthBar, staminaBar;
-    public float helth, maxHelth, stamina , maxStamina;
-    public float lastStamina ,staminaRegenDelay;
+    public Image staminaBar;
+    float stamina , maxStamina;
+    float lastStamina ,staminaRegenDelay;
 
     bool isDashing;
     float dashForceRollback;
@@ -21,10 +21,9 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         bodyExist = false;
-        speed = 1;
+        defoltSpeed = 1;
         stamina = 100;
         maxStamina = 100;
-        helth = 100;
         isDashing = false;
     }
 
@@ -49,7 +48,7 @@ public class PlayerControl : MonoBehaviour
         {
 
             if ((hit.collider.tag == "Body" ) && (Input.GetMouseButtonDown(0)))
-            {   
+            {
                 playerBody = hit.transform.gameObject;
                 playerBody.tag = "Player";
                 bodyAnimator = playerBody.GetComponent<Animator>();
@@ -60,7 +59,8 @@ public class PlayerControl : MonoBehaviour
 
     void BodyControl()
     {
-        playerBody.transform.position += new Vector3 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f) * speed * Dash() * Time.deltaTime;
+        speed = defoltSpeed * Dash(); // called once time pew frame!
+        playerBody.transform.position += new Vector3 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f) * speed *  Time.deltaTime;
         StaminaRecovery();
         AnimControllor();
     }
@@ -88,7 +88,7 @@ public class PlayerControl : MonoBehaviour
                     bodyAnimator.SetInteger("dir", 2);
             } 
         }
-        bodyAnimator.speed = Dash() * speed; //speed up animation with speed up body
+        bodyAnimator.speed = speed ; //speed up animation with speed up body
     }
     void StaminaRecovery()
     {
@@ -134,7 +134,7 @@ public class PlayerControl : MonoBehaviour
     private void UI()
     {
         StatBar(staminaBar, stamina);
-        StatBar(helthBar, helth);
+        //StatBar(helthBar, helth);
     }
 
     private void StatBar(Image attrBar ,float attrLVL)
