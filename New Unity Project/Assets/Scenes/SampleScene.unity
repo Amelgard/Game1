@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.029, y: 0.642, z: 0}
+  m_LocalPosition: {x: -4.69, y: 0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -580,7 +580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750417589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.387, y: 0.616, z: 0}
+  m_LocalPosition: {x: -4.87, y: -0.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -749,6 +749,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3556635990478982299, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982299, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982299, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982299, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -794,6 +806,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3556635990478982299, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982301, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982302, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556635990478982302, guid: 0455c7b90cfa6ae4dab7cc8fcc6881bc, type: 3}
+      propertyPath: m_PixelPerfect
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
