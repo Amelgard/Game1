@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,18 +11,21 @@ public class PlayerControl : MonoBehaviour
 
     Animator bodyAnimator;
 
-    public float stamina, lastStamina ,staminaRegenDelay;
+    public Image helthBar, staminaBar;
+    public float helth, maxHelth, stamina , maxStamina;
+    public float lastStamina ,staminaRegenDelay;
 
-    private bool isDashing;
-    private float dashForceRollback;
+    bool isDashing;
+    float dashForceRollback;
 
     void Start()
     {
         bodyExist = false;
         speed = 1;
         stamina = 100;
+        maxStamina = 100;
+        helth = 100;
         isDashing = false;
-
     }
 
     // Update is called once per frame
@@ -29,11 +33,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (bodyExist == false)
         {
-            TakeNewBody();
+            TakeNewBody();  
         }
         else
         {
             BodyControl();
+            UI();
         }
     }
 
@@ -91,7 +96,7 @@ public class PlayerControl : MonoBehaviour
             staminaRegenDelay = 0;
         if (staminaRegenDelay < 2) // time to stamina regen
             staminaRegenDelay += 1 * Time.deltaTime;
-        else 
+        else
         {
             staminaRegenDelay = 2; // time to stamina regen
             if (stamina < 100)
@@ -104,7 +109,7 @@ public class PlayerControl : MonoBehaviour
     float Dash()
     {
         float dashForce;
-        if ((stamina >= 20) && (Input.GetKeyDown(KeyCode.LeftShift) && (Input.GetKey("a") || Input.GetKey("w") || Input.GetKey("s")||Input.GetKey("d"))))
+        if ((stamina >= 20) && (Input.GetKeyDown(KeyCode.LeftShift)) && (Input.GetAxis("Horizontal") !=0 || Input.GetAxis("Vertical") != 0))
         {
             stamina -= 20;
             dashForceRollback = 0;
@@ -125,4 +130,55 @@ public class PlayerControl : MonoBehaviour
             dashForce = 1;
         return dashForce;
     }
+
+    private void UI()
+    {
+        StatBar(staminaBar, stamina);
+        StatBar(helthBar, helth);
+    }
+
+    private void StatBar(Image attrBar ,float attrLVL)
+    {
+        attrBar.rectTransform.localScale = new Vector3(attrLVL / 100, 1, 1);
+        attrBar.rectTransform.localPosition = new Vector3(((attrLVL / 100) * 75) - 75, 0, 0); // сукка я делал эту хуйню всё утро блят пиздец 2 ебаных строки блять
+    }
 }
+
+// нерабочий пиздец который нужно сделать!
+    /*
+public class AttributeBar
+{
+    private float m_attributeMax, m_attribute;
+    private Image m_attributeBar, m_attributeBackground;
+
+    public AttributeBar()
+    {
+        m_attributeMax = 0;
+        m_attribute = 0;
+    }
+
+
+    public void AttributeMax(float attributeMax)
+    {
+        m_attributeMax = attributeMax;
+    }
+    public float AttributeMax()
+    {
+        return m_attributeMax;
+    }
+    public void Attribute(float attribute)
+    {
+        m_attribute = attribute;
+    }
+    public float Attribute()
+    {
+        return m_attribute;
+    }
+
+    public void AttributeLimiter()
+    {
+        if (m_attribute! < m_attributeMax)
+        {
+            m_attribute = m_attributeMax;
+        }
+} */
