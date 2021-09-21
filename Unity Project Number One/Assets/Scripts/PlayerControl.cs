@@ -113,11 +113,11 @@ public class PlayerControl : MonoBehaviour
         if (isDashing)
         {
             dashForce = 2;              //speed bust with dash
-            if (dashForceRollback < 2f)
+            if (dashForceRollback < 0.5f)
                 dashForceRollback += 1 * Time.deltaTime;
             else
             {
-                dashForceRollback = 2f;
+                dashForceRollback = 0.5f;
                 isDashing = false;
             }
         }
