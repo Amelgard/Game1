@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
 
     void BodyControl()
     {
-        playerBody.transform.position += new Vector3 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f) * 2 * speed * Dash() * Time.deltaTime;
+        playerBody.transform.position += new Vector3 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f) * speed * Dash() * Time.deltaTime;
         StaminaRecovery();
         AnimControllor();
     }
@@ -68,7 +68,7 @@ public class PlayerControl : MonoBehaviour
             bodyAnimator.SetBool("isMoving", false);
         if (Input.GetAxis("Horizontal") != 0)
         {
-            if (Input.GetAxis("Horizontal") < 0) // dir 0=up, dir 1=left, dir 2=up, dir 3=right
+            if (Input.GetAxis("Horizontal") < 0) // dir 0=down, dir 1=left, dir 2=up, dir 3=right
                 bodyAnimator.SetInteger("dir", 1);
             else
                 bodyAnimator.SetInteger("dir", 3);
@@ -83,6 +83,7 @@ public class PlayerControl : MonoBehaviour
                     bodyAnimator.SetInteger("dir", 2);
             } 
         }
+        bodyAnimator.speed = Dash() * speed; //speed up animation with speed up body
     }
     void StaminaRecovery()
     {
@@ -112,11 +113,11 @@ public class PlayerControl : MonoBehaviour
         if (isDashing)
         {
             dashForce = 2;              //speed bust with dash
-            if (dashForceRollback < 0.5f)
+            if (dashForceRollback < 2f)
                 dashForceRollback += 1 * Time.deltaTime;
             else
             {
-                dashForceRollback = 0.5f;
+                dashForceRollback = 2f;
                 isDashing = false;
             }
         }
