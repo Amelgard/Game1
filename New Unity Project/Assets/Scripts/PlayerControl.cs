@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -11,8 +10,7 @@ public class PlayerControl : MonoBehaviour
 
     Animator bodyAnimator;
 
-    public Image staminaBar;
-    float stamina , maxStamina;
+    public float stamina , maxStamina;
     float lastStamina ,staminaRegenDelay;
 
     bool isDashing;
@@ -37,7 +35,6 @@ public class PlayerControl : MonoBehaviour
         else
         {
             BodyControl();
-            UI();
         }
     }
 
@@ -99,10 +96,10 @@ public class PlayerControl : MonoBehaviour
         else
         {
             staminaRegenDelay = 2; // time to stamina regen
-            if (stamina < 100)
+            if (stamina < maxStamina)
                 stamina += 10 * Time.deltaTime;
             else
-                stamina = 100;
+                stamina = maxStamina;
         }
         lastStamina = stamina;
     }
@@ -131,17 +128,7 @@ public class PlayerControl : MonoBehaviour
         return dashForce;
     }
 
-    private void UI()
-    {
-        StatBar(staminaBar, stamina);
-        //StatBar(helthBar, helth);
-    }
-
-    private void StatBar(Image attrBar ,float attrLVL)
-    {
-        attrBar.rectTransform.localScale = new Vector3(attrLVL / 100, 1, 1);
-        attrBar.rectTransform.localPosition = new Vector3(((attrLVL / 100) * 75) - 75, 0, 0); // сукка я делал эту хуйню всё утро блят пиздец 2 ебаных строки блять
-    }
+    
 }
 
 // нерабочий пиздец который нужно сделать!
