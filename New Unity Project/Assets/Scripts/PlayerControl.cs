@@ -144,6 +144,10 @@ public class PlayerControl : MonoBehaviour
     }
 }
 
+
+//АУФ
+
+
 // нерабочий пиздец который нужно сделать!
     /*
 public class AttributeBar
