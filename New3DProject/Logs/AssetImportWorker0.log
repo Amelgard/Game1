@@ -1,0 +1,171 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.1f1 (270dd8c3da1c) revision 2559448'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.0) 64bit' Language: 'ru' Physical Memory: 6081 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+D:\UnityGameEngine\2020.2.1f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/User/Documents/GitHub/Game1/New3DProject
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+49424
+Successfully changed project path to: C:/Users/User/Documents/GitHub/Game1/New3DProject
+C:/Users/User/Documents/GitHub/Game1/New3DProject
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 26.67 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.1f1 (270dd8c3da1c)
+[Subsystems] Discovering subsystems at path D:/UnityGameEngine/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/User/Documents/GitHub/Game1/New3DProject/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon(TM) Vega 3 Graphics (ID=0x15d8)
+    Vendor:   
+    VRAM:     3040 MB
+    Driver:   27.20.14501.28009
+Initialize mono
+Mono path[0] = 'D:/UnityGameEngine/2020.2.1f1/Editor/Data/Managed'
+Mono path[1] = 'D:/UnityGameEngine/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/UnityGameEngine/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56984
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/UnityGameEngine/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001765 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 31.48 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.166 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001009 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.29 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.019 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.25 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1097 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 55.9 MB.
+System memory in use after: 56.0 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1536.
+Total: 2.392900 ms (FindLiveObjects: 0.297200 ms CreateObjectMapping: 0.081300 ms MarkObjects: 1.912600 ms  DeleteObjects: 0.100000 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Image/ManaLvl.png
+  artifactKey: Guid(0b58ddcf2afb5124ea50084071235c46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/ManaLvl.png using Guid(0b58ddcf2afb5124ea50084071235c46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8ebdbd325daaf1cbc37360581016564') in 0.162267 seconds
+  Import took 0.165437 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000467 seconds.
+  path: Assets/Image/Skeleton.png
+  artifactKey: Guid(97efea4e0b5dd3446b4949bd8352fbe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Skeleton.png using Guid(97efea4e0b5dd3446b4949bd8352fbe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63cdad3e6bd5b44b4b67fd5a8c4bd51f') in 0.107911 seconds
+  Import took 0.110554 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Image/фон.jpg
+  artifactKey: Guid(942025970ef89704d8b4c4e1870e5aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/фон.jpg using Guid(942025970ef89704d8b4c4e1870e5aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '814430268cedbaed8c0e935281fd3084') in 0.035393 seconds
+  Import took 0.038146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/Image/StaminaLvl.png
+  artifactKey: Guid(988ac34c20b304149b7af2eb335562f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/StaminaLvl.png using Guid(988ac34c20b304149b7af2eb335562f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0f2f6ab10bcfc3785c8cccfe027299c') in 0.037422 seconds
+  Import took 0.041883 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Image/HealthLvl.png
+  artifactKey: Guid(be04e56f512c33f4ab4741c39f2bbeee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/HealthLvl.png using Guid(be04e56f512c33f4ab4741c39f2bbeee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23318793e2e60dcd50a9ffb8c54d2f4d') in 0.033946 seconds
+  Import took 0.039059 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002792 seconds.
+  path: Assets/Image/HealthLvl.png
+  artifactKey: Guid(be04e56f512c33f4ab4741c39f2bbeee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/HealthLvl.png using Guid(be04e56f512c33f4ab4741c39f2bbeee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23318793e2e60dcd50a9ffb8c54d2f4d') in 0.025879 seconds
+  Import took 0.030378 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.387138 seconds.
+  path: Assets/Scripts/Attributes.cs
+  artifactKey: Guid(8bff33c4cb885e14da2e0c7d00feeebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Attributes.cs using Guid(8bff33c4cb885e14da2e0c7d00feeebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bfd806f51cceb70297070d3bc204edd') in 0.013649 seconds
+  Import took 0.016744 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000573 seconds.
+  path: Assets/Scripts/Attributes.cs
+  artifactKey: Guid(8bff33c4cb885e14da2e0c7d00feeebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Attributes.cs using Guid(8bff33c4cb885e14da2e0c7d00feeebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bfd806f51cceb70297070d3bc204edd') in 0.003657 seconds
+  Import took 0.007241 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.377542 seconds.
+  path: Assets/Scripts/PlayerControl.cs
+  artifactKey: Guid(152507958381c064faa54055c6c44378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerControl.cs using Guid(152507958381c064faa54055c6c44378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5c22ff6ca0735a8796c5bcad47d664d') in 0.007040 seconds
+  Import took 0.010281 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.353595 seconds.
+  path: Assets/Scripts/PlayerControl.cs
+  artifactKey: Guid(152507958381c064faa54055c6c44378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerControl.cs using Guid(152507958381c064faa54055c6c44378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5c22ff6ca0735a8796c5bcad47d664d') in 0.003580 seconds
+  Import took 0.006615 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.352641 seconds.
+  path: Assets/Scripts/UIController.cs
+  artifactKey: Guid(e9a661ed70cbec44a99834e6ca59f478) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/UIController.cs using Guid(e9a661ed70cbec44a99834e6ca59f478) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09643477e27e639d7b5ef24ef5d5ab51') in 0.010446 seconds
+  Import took 0.013849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000577 seconds.
+  path: Assets/Scripts/UIController.cs
+  artifactKey: Guid(e9a661ed70cbec44a99834e6ca59f478) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/UIController.cs using Guid(e9a661ed70cbec44a99834e6ca59f478) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09643477e27e639d7b5ef24ef5d5ab51') in 0.005640 seconds
+  Import took 0.009067 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
