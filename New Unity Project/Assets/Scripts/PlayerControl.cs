@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,11 +11,16 @@ public class PlayerControl : MonoBehaviour
 
     Animator bodyAnimator;
 
-    public float stamina , maxStamina;
+    public float maxStamina;
     float lastStamina ,staminaRegenDelay;
 
     bool isDashing;
     float dashForceRollback;
+    public float staminalvl;
+
+    public float stamina;
+    
+
 
     void Start()
     {
@@ -36,6 +42,11 @@ public class PlayerControl : MonoBehaviour
         {
             BodyControl();
         }
+
+
+        
+
+
     }
 
     void TakeNewBody()
@@ -111,6 +122,8 @@ public class PlayerControl : MonoBehaviour
             stamina -= 20;
             dashForceRollback = 0;
             isDashing = true;
+            
+
         }
         if (isDashing)
         {
@@ -126,8 +139,9 @@ public class PlayerControl : MonoBehaviour
         else
             dashForce = 1;
         return dashForce;
+        
     }
-
+    
     
 }
 
