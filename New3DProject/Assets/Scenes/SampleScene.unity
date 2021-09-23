@@ -133,9 +133,11 @@ GameObject:
   m_Component:
   - component: {fileID: 155229651}
   - component: {fileID: 155229650}
+  - component: {fileID: 155229654}
   - component: {fileID: 155229652}
+  - component: {fileID: 155229653}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: All Player Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +182,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152507958381c064faa54055c6c44378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &155229653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155229649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df94803e26e360b4788b0dd40846fe75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaRegenSpeed: 100
+  manaRegenSpeed: 100
+  helthRegenSpeed: 100
+--- !u!114 &155229654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155229649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a74fae446548a44bb1cb37c79203f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHelth: 100
+  maxMana: 100
+  maxStamina: 100
+  defaultSpeed: 0
+  helth: 0
+  mana: 0
+  stamina: 0
+  speed: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
