@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void ObjectController(GameObject thisObject, float objectSpeed)
     {
-        thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * objectSpeed * Time.deltaTime; ;
+        if(thisObject != null)
+            thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * objectSpeed * Time.deltaTime; ;
     }
 }
