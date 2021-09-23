@@ -10,9 +10,10 @@ public class EventAggregator : MonoBehaviour
     private void Start()
     {
         playerControl = gameObject.GetComponent("PlayerControl") as PlayerControl;
+        player = playerControl.FindPlayer();
     }
     private void Update()
     {
-        player = playerControl.FindPlayer();
+        playerControl.ObjectController(player, 2);
     }
 }

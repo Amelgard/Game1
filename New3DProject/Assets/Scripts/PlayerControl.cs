@@ -10,8 +10,8 @@ public class PlayerControl : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         return player;
     }
-    public void ObjectMover(GameObject thisObject)
+    public void ObjectController(GameObject thisObject, float objectSpeed)
     {
-
+        thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * objectSpeed * Time.deltaTime; ;
     }
 }
