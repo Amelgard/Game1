@@ -13,7 +13,7 @@ public class AnimatorControl : MonoBehaviour
     }
     private void Update()
     {
-        isMoving = moveCheck();
+        isMoving = MoveCheck();
         DirCheck();
         ControlAnimation();
         PositionRefresh();
@@ -27,7 +27,7 @@ public class AnimatorControl : MonoBehaviour
     {
         if (isMoving)
         {
-            if(lastPosX != gameObject.transform.position.x)
+            if (lastPosX != gameObject.transform.position.x)
             {
                 if (gameObject.transform.position.x > lastPosX) // move right
                     dir = 3;
@@ -49,7 +49,7 @@ public class AnimatorControl : MonoBehaviour
         lastPosZ = gameObject.transform.position.z;
     }
 
-    private bool moveCheck()
+    private bool MoveCheck()
     {
         bool m_isMoving;
         if (lastPosX != gameObject.transform.position.x ||

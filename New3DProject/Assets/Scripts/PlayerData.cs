@@ -7,7 +7,8 @@ public class PlayerData : MonoBehaviour
     PlayerControl playerControl;
     PlayerStats playerStats;
     StatManipulate statManipulate;
-    public GameObject player;
+    CameraControl cameraControl;
+    private GameObject player;
 
     private void Awake()
     {
@@ -20,7 +21,8 @@ public class PlayerData : MonoBehaviour
     private void Update()
     {
         StatsRecavery();
-        playerControl.ObjectMover(player, 2);
+        playerControl.ObjectMover(player, playerStats.speed);
+        cameraControl.CameraMover(player, playerStats.speed - 1, 3.5f, 1.5f);
     }
 
     private void IncludeScripts()
@@ -28,6 +30,7 @@ public class PlayerData : MonoBehaviour
         playerControl = gameObject.GetComponent("PlayerControl") as PlayerControl;
         statManipulate = gameObject.GetComponent("StatManipulate") as StatManipulate;
         playerStats = gameObject.GetComponent("PlayerStats") as PlayerStats;
+        cameraControl = gameObject.GetComponent("CameraControl") as CameraControl;
     }
     private void StatsRecavery()
     {
