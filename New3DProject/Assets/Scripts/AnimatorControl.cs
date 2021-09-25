@@ -29,17 +29,23 @@ public class AnimatorControl : MonoBehaviour
         {
             if (lastPosX != gameObject.transform.position.x)
             {
-                if (gameObject.transform.position.x > lastPosX) // move right
-                    dir = 3;
-                else                                            // move left
-                    dir = 1;
+                if (Mathf.Abs(lastPosX - gameObject.transform.position.x) > 0.025f) 
+                {
+                    if (gameObject.transform.position.x > lastPosX) // move right
+                        dir = 3;
+                    else                                            // move left
+                        dir = 1; 
+                }
             }
             else
             {
-                if (gameObject.transform.position.z > lastPosZ) // move up
-                    dir = 2;
-                else                                            // move down
-                    dir = 0;
+                if (Mathf.Abs(lastPosZ - gameObject.transform.position.z) > 0.025f)
+                {
+                    if (gameObject.transform.position.z > lastPosZ) // move up
+                        dir = 2;
+                    else                                            // move down
+                        dir = 0;
+                }
             }
         }
     }

@@ -60,8 +60,8 @@
     <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\AnimatorControl.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\StatManipulate.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\StatManipulate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
