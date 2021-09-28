@@ -14,44 +14,17 @@ public class CameraControl : MonoBehaviour
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
-
-    public void CameraMover(GameObject cameraTarget, float cameraSpeed, Vector3 cameraOffset, float maxDistenceToObject)
+    public void LookAtTarget(Vector3 cameraTargetPosition)
     {
-        Vector3 cameraMove = new Vector3(0, 0, 0);
+        Camera.transform.LookAt(cameraTargetPosition);
+    }
+    public void CameraMover(GameObject cameraTarget, Vector3 cameraOffset)
+    {
         float targetSize = cameraTarget.transform.lossyScale.x;
-        Vector3 newCameraCenter = Camera.transform.position - cameraOffset * targetSize;
-        maxDistenceToObject *= targetSize;
-        cameraMove.x = CameraMoveOnOneAxis(cameraMove.x, cameraTarget.transform.position.x, cameraSpeed, newCameraCenter.x, maxDistenceToObject, targetSize);
-        cameraMove.z = CameraMoveOnOneAxis(cameraMove.z, cameraTarget.transform.position.z, cameraSpeed, newCameraCenter.z, maxDistenceToObject, targetSize);
-        cameraMove.y = CameraMoveOnOneAxis(cameraMove.y, cameraTarget.transform.position.y, cameraSpeed, newCameraCenter.y, maxDistenceToObject, targetSize);
-        Camera.transform.position += cameraMove;
+        Vector3 newCameraCenter = cameraTarget.transform.position + (cameraOffset * targetSize);
+        Camera.transform.position = newCameraCenter;
     }
-    private float CameraMoveOnOneAxis(float cameraMove, float cameraTarget, float cameraSpeed, float newCameraCenter, float maxDistenceToObject, float targetSize)
-    {
-        if (cameraTarget != newCameraCenter)
-        {
-            if (Mathf.Abs(cameraTarget - newCameraCenter) > 0.01f * targetSize)
-            {
-                if (cameraTarget < newCameraCenter)
-                {
-                    if (Mathf.Abs(cameraTarget - newCameraCenter) <= maxDistenceToObject)
-                        cameraMove = -cameraSpeed * Time.deltaTime * targetSize;
-                    else
-                        cameraMove = cameraTarget - newCameraCenter + maxDistenceToObject;
-                }
-                else
-                {
-                    if (Mathf.Abs(cameraTarget - newCameraCenter) <= maxDistenceToObject)
-                        cameraMove = cameraSpeed * Time.deltaTime * targetSize;
-                    else
-                        cameraMove = cameraTarget - newCameraCenter - maxDistenceToObject;
-                }
-            }
-            else
-                cameraMove = cameraTarget - newCameraCenter;
-        }
-        return cameraMove;
-    }
+    
     private void ObjectTransparency()
     {
 

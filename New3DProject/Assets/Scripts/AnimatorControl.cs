@@ -8,7 +8,7 @@ public class AnimatorControl : MonoBehaviour
     public bool isMoving;
     private void Update()
     {
-        
+        ControlAnimation();
     }
     private void ControlAnimation()
     {

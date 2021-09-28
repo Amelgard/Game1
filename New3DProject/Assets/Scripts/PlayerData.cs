@@ -22,7 +22,8 @@ public class PlayerData : MonoBehaviour
     {
         StatsRecavery();
         playerControl.ObjectMover(player, playerStats.speed);
-        cameraControl.CameraMover(player, playerStats.speed - 1, new Vector3(-1.5f, 1, -4), 1.5f);
+        cameraControl.CameraMover(player, new Vector3(0, 2f, -3f));
+        cameraControl.LookAtTarget(player.transform.position);
     }
 
     private void IncludeScripts()
