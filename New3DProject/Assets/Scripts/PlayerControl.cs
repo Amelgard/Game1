@@ -14,35 +14,36 @@ public class PlayerControl : MonoBehaviour
     {
         if (thisObject != null)
         {
-            CollChek blockChek = thisObject.GetComponent<CollChek>();
-            AnimatorControl anim = thisObject.GetComponent<AnimatorControl>();
+            //CollChek blockChek = thisObject.GetComponent<CollChek>();
+            GameObject armature = GameObject.Find("/" + thisObject.name + "/Armature");
+            AnimatorControl anim = armature.GetComponent<AnimatorControl>();
             bool isMoving = false;
             float objectScale = thisObject.transform.lossyScale.x;
-            if (Input.GetAxis("Vertical") > 0 && !blockChek.IsForwardBlocked())
+            if (Input.GetAxis("Vertical") > 0 /*&& !blockChek.IsForwardBlocked()*/)
             {
                 thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * objectSpeed * objectScale);
-                anim.dir = 2;
+                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 isMoving = true;
             }
-            if (Input.GetAxis("Vertical") < 0 && !blockChek.IsBackBlocked())
+            if (Input.GetAxis("Vertical") < 0)
             {
                 thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * objectSpeed * objectScale);
-                anim.dir = 0;
+                thisObject.transform.rotation = Quaternion.Euler(new Vector3 (0, 180, 0));
                 isMoving = true;
             }
-            if (Input.GetAxis("Horizontal") > 0 && !blockChek.IsLeftBlocked())
+            if (Input.GetAxis("Horizontal") > 0)
             {
                 thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * objectSpeed * objectScale, 0, 0);
-                anim.dir = 3;
+                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
                 isMoving = true;
             }
-            if (Input.GetAxis("Horizontal") < 0 && !blockChek.IsRightBlocked())
+            if (Input.GetAxis("Horizontal") < 0)
             {
                 thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * objectSpeed * objectScale, 0, 0);
-                anim.dir = 1;
+                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
                 isMoving = true;
             }
-            anim.isMoving = isMoving;
+            //anim.isMoving = isMoving;
         }
     }
 }
