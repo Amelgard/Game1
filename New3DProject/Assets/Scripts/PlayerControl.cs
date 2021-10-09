@@ -14,36 +14,67 @@ public class PlayerControl : MonoBehaviour
     {
         if (thisObject != null)
         {
-            //CollChek blockChek = thisObject.GetComponent<CollChek>();
             GameObject armature = GameObject.Find("/" + thisObject.name + "/Armature");
-            AnimatorControl anim = armature.GetComponent<AnimatorControl>();
-            bool isMoving = false;
             float objectScale = thisObject.transform.lossyScale.x;
-            if (Input.GetAxis("Vertical") > 0 /*&& !blockChek.IsForwardBlocked()*/)
+            Animator anim = armature.GetComponent<Animator>();
+            anim.SetBool("isMoving", MoveToDir(objectScale * objectSpeed * Time.deltaTime, thisObject));
+        }
+    }
+    private bool MoveToDir(float m_objectSpeed, GameObject m_thisObject)
+    {
+        if ((Input.GetAxis("Horizontal") != 0) || (Input.GetAxis("Vertical") != 0))
+        {
+            if (Input.GetAxis("Vertical") > 0)
             {
-                thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * objectSpeed * objectScale);
-                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                isMoving = true;
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                    m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 45, 0));
+                    return true;
+                }
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                    m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, -45, 0));
+                    return true;
+                }
+                m_thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                return true;
             }
             if (Input.GetAxis("Vertical") < 0)
             {
-                thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * objectSpeed * objectScale);
-                thisObject.transform.rotation = Quaternion.Euler(new Vector3 (0, 180, 0));
-                isMoving = true;
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                    m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 135, 0));
+                    return true;
+                }
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                    m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, -135, 0));
+                    return true;
+                }
+                m_thisObject.transform.position += new Vector3(0, 0, Input.GetAxis("Vertical")) * m_objectSpeed;
+                m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                return true;
             }
             if (Input.GetAxis("Horizontal") > 0)
             {
-                thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * objectSpeed * objectScale, 0, 0);
-                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-                isMoving = true;
+                m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * m_objectSpeed;
+                m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                return true;
             }
-            if (Input.GetAxis("Horizontal") < 0)
+            else
             {
-                thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * objectSpeed * objectScale, 0, 0);
-                thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
-                isMoving = true;
+                m_thisObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * m_objectSpeed;
+                m_thisObject.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                return true;
             }
-            //anim.isMoving = isMoving;
+
         }
+        else
+            return false;
     }
 }
