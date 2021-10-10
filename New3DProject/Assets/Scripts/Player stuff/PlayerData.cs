@@ -19,14 +19,14 @@ public class PlayerData : MonoBehaviour
     }
     private void Start()
     {
-        cameraControl.CameraMover(player, new Vector3(0, 8f, -3f));
+        cameraControl.CameraMover(player, new Vector3(0, 3f, -3f));
         cameraControl.LookAtTarget(player.transform.position);
     }
     private void Update()
     {
         StatsRecavery();
         playerControl.ObjectMover(player, playerStats.speed);
-        cameraControl.CameraMover(player, new Vector3(0, 8f, -3f));
+        cameraControl.CameraMover(player, new Vector3(0, 3f, -3f));
     }
 
     private void IncludeScripts()
