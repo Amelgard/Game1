@@ -22,7 +22,7 @@ public class CameraControl : MonoBehaviour
     {
         float targetSize = cameraTarget.transform.lossyScale.x;
         Vector3 newCameraCenter = cameraTarget.transform.position + (cameraOffset * targetSize);
-        newCameraCenter.y = cameraOffset.y;
+        //newCameraCenter.y = cameraOffset.y;
         Camera.transform.position = newCameraCenter;
     }
 }

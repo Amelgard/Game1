@@ -9,6 +9,7 @@ public class PlayerData : MonoBehaviour
     StatManipulate statManipulate;
     CameraControl cameraControl;
     private GameObject player;
+    public Vector3 cameraOffset;
     private void Awake()
     {
         IncludeScripts();
@@ -17,16 +18,12 @@ public class PlayerData : MonoBehaviour
         playerStats.helth = playerStats.maxHelth;
         playerStats.mana = playerStats.maxMana;
     }
-    private void Start()
-    {
-        cameraControl.CameraMover(player, new Vector3(0, 3f, -3f));
-        cameraControl.LookAtTarget(player.transform.position);
-    }
     private void Update()
     {
         StatsRecavery();
         playerControl.ObjectMover(player, playerStats.speed);
-        cameraControl.CameraMover(player, new Vector3(0, 3f, -3f));
+        cameraControl.CameraMover(player, cameraOffset);
+        cameraControl.LookAtTarget(player.transform.position);
     }
 
     private void IncludeScripts()
