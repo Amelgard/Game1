@@ -28,9 +28,9 @@ public class PlayerControl : MonoBehaviour
             else
                 anim.SetBool("isMoving", false);
             if (Input.GetKeyDown(KeyCode.E))
-                selectedWeapon.ChangeWeapon("sword" ,thisObject, objectScale);
+                selectedWeapon.ChangeWeapon("sword" ,thisObject, objectScale, anim);
             if (Input.GetKeyDown(KeyCode.R))
-                selectedWeapon.ChangeWeapon("hand", thisObject, objectScale);
+                selectedWeapon.ChangeWeapon("hand", thisObject, objectScale, anim);
         }
     }
     private Vector3 MoveToDir(float m_objectSpeed, GameObject m_armature)

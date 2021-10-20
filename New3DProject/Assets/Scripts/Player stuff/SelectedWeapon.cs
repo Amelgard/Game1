@@ -10,22 +10,24 @@ public class SelectedWeapon : MonoBehaviour
     {
         
     }
-    public void ChangeWeapon(string weaponName, GameObject thisObject, float objectScale)
+    public void ChangeWeapon(string weaponName, GameObject thisObject, float objectScale, Animator anim)
     {
         GameObject hand = thisObject.transform.Find("Armature/mainBone/armIK.R/arm3.R").gameObject;
         switch (weaponName)
         {
-            case "hand":
+            case "hand"://id 0
                 if (selectedWeapon != null)
                     Destroy(selectedWeapon);
+                anim.SetInteger("selectedWeapon", 0);
                 break;
-            case "sword":
+            case "sword"://id 1
                 if (selectedWeapon != null)
                     Destroy(selectedWeapon);
                 selectedWeapon = Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/sword"), hand.transform);
-                selectedWeapon.transform.position += new Vector3(0.05f, -0.02f, 0.03f) * objectScale;
-                selectedWeapon.transform.Rotate(Vector3.right, 90f);
-                selectedWeapon.transform.Rotate(Vector3.up, 90f);
+                selectedWeapon.transform.localPosition += new Vector3(0.03f, 0.06f, -0.06f) * objectScale;
+                selectedWeapon.transform.Rotate(Vector3.right, 87);
+                selectedWeapon.transform.Rotate(Vector3.up, 90);
+                anim.SetInteger("selectedWeapon", 1);
                 break;
         }
     }
