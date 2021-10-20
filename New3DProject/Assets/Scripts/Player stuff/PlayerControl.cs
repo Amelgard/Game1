@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
             float objectScale = thisObject.transform.lossyScale.x;
             Animator anim = armature.GetComponent<Animator>();
             Rigidbody rb = thisObject.GetComponent<Rigidbody>();
+            SelectedWeapon selectedWeapon = thisObject.GetComponent("SelectedWeapon") as SelectedWeapon;
             Vector3 move = MoveToDir(objectScale * objectSpeed, armature);
             move.x -= rb.velocity.x;
             move.z -= rb.velocity.z;
@@ -26,6 +27,10 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("isMoving", true);
             else
                 anim.SetBool("isMoving", false);
+            if (Input.GetKeyDown(KeyCode.E))
+                selectedWeapon.ChangeWeapon("sword" ,thisObject, objectScale);
+            if (Input.GetKeyDown(KeyCode.R))
+                selectedWeapon.ChangeWeapon("hand", thisObject, objectScale);
         }
     }
     private Vector3 MoveToDir(float m_objectSpeed, GameObject m_armature)
