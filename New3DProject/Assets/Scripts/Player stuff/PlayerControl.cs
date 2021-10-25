@@ -73,88 +73,44 @@ public class PlayerControl : MonoBehaviour
     {
         // 1= руб 2 =прав-лев 3=кол 4=лев-прав
         int att = 0;
-        Vector3 pos2;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (emp1 != null && Input.GetKeyUp(KeyCode.Mouse0))
         {
-            emp1 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0,0,0,0), player.transform);
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), emp1.transform);
+            emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/sword"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
+            emp2.transform.LookAt(player.transform.position);
             emp1.transform.LookAt(player.transform.position);
-            emp2.transform.position = m_mouseGlobalPos;
-            pos2 = emp2.transform.localPosition;
-            float rot1 = emp1.transform.eulerAngles.y;
-            if (rot1 >= 135 && rot1 <= 225)// up
+            float rot1 = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
+            Vector3 pos1 = emp1.transform.position;
+            Vector3 pos2 = emp2.transform.position;
+            
+            //if()
+            test = rot1;
+            if (rot1 > -25 && rot1 < 25)
             {
-                if (Mathf.Abs(pos2.x) < Mathf.Abs(pos2.z))
+                if (Mathf.Abs(pos1.x - pos2.x) > Mathf.Abs(pos1.z - pos2.z))
                 {
-                    if (pos2.z > 0)
-                        att = 1;
-                    else
-                        att = 3;
-                }
-                else
-                {
-                    if (pos2.x > 0)
-                        att = 4;
-                    else
-                        att = 2;
-                }
-            }
-            else if (rot1 > 225 && rot1 < 315)//right
-            {
-                if (Mathf.Abs(pos2.x) < Mathf.Abs(pos2.z))
-                {
-                    if (pos2.z > 0)
-                        att = 1;
-                    else
-                        att = 3;
-                }
-                else
-                {
-                    if (pos2.x > 0)
-                        att = 4;
-                    else
-                        att = 2;
-                }
-            }
-            else if (rot1 > 45 && rot1 < 135)// left
-            {
-                if (Mathf.Abs(pos2.x) < Mathf.Abs(pos2.z))
-                {
-                    if (pos2.z > 0)
-                        att = 1;
-                    else
-                        att = 3;
-                }
-                else
-                {
-                    if (pos2.x > 0)
-                        att = 4;
-                    else
-                        att = 2;
-                }
-            }
-            else if (rot1 >= 315 || rot1 <= 45)// down
-            {
-                if (Mathf.Abs(pos2.x) < Mathf.Abs(pos2.z))
-                {
-                    if (pos2.z > 0)
+                    if (pos1.x > pos2.x)
                         att = 3;
                     else
                         att = 1;
                 }
                 else
                 {
-                    if (pos2.x > 0)
-                        att = 4;
+                    if (pos1.z > pos2.z)
+                        att = 3;
                     else
-                        att = 2;
+                        att = 1;
                 }
             }
+            else if (rot1 > 0)
+                        att = 2;
+                    else
+                        att = 4;
             Destroy(emp1);
             Destroy(emp2);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            emp1 = Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/sword"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
         }
         return att;
     }
@@ -186,22 +142,21 @@ public class PlayerControl : MonoBehaviour
                 moveDir = AngleToObject(lastPlayerPos, playerPos) - m_angle;
                 if (moveDir < 0)
                     moveDir += 360;
-                test = moveDir;
             }
             m_anim.SetBool("isMoving", true);
-            if (moveDir >= 155 && moveDir <= 205)// back
+            if (moveDir >= 135 && moveDir <= 225)// back
             {
                 m_anim.SetInteger("moveDir", 3);
             }
-            else if (moveDir > 205 && moveDir < 335)//left
+            else if (moveDir > 225 && moveDir < 335)//left
             {
                 m_anim.SetInteger("moveDir", 4);
             }
-            else if (moveDir > 25 && moveDir < 155)// right
+            else if (moveDir > 45 && moveDir < 115)// right
             {
                 m_anim.SetInteger("moveDir", 2);
             }
-            else if (moveDir >= 335 || moveDir <= 25)// forvard
+            else if (moveDir >= 315 || moveDir <= 45)// forvard
             {
                 m_anim.SetInteger("moveDir", 1);
             }

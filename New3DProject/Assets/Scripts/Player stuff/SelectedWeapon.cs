@@ -12,7 +12,7 @@ public class SelectedWeapon : MonoBehaviour
     }
     public void ChangeWeapon(string weaponName, GameObject thisObject, float objectScale, Animator anim)
     {
-        GameObject hand = thisObject.transform.Find("Armature/mainBone/armIK.R/arm3.R").gameObject;
+        GameObject hand = thisObject.transform.Find("Armature/Hips/Spine/Chest/UpperChest/Shoulder.R/UpperArm.R/LowerArm.R/Hand.R").gameObject;
         switch (weaponName)
         {
             case "hand"://id 0
