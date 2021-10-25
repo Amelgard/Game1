@@ -5,11 +5,7 @@ using UnityEngine;
 public class SelectedWeapon : MonoBehaviour
 {
     public GameObject selectedWeapon;
-    public Vector3 test; // for debuging weapon position with create
-    public void GiveWeapon(string weaponName)
-    {
-        
-    }
+    //public Vector3 test; // for debuging weapon position with create
     public void ChangeWeapon(string weaponName, GameObject thisObject, float objectScale, Animator anim)
     {
         GameObject hand = thisObject.transform.Find("Armature/Hips/Spine/Chest/UpperChest/Shoulder.R/UpperArm.R/LowerArm.R/Hand.R").gameObject;

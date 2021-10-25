@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     PlayerControl playerControl;
-    PlayerStats playerStats;
+    ObjectStats playerStats;
     StatManipulate statManipulate;
     CameraControl cameraControl;
     private GameObject player;
@@ -14,6 +14,7 @@ public class PlayerData : MonoBehaviour
     {
         IncludeScripts();
         player = playerControl.FindPlayer();
+        playerStats = player.GetComponent("ObjectStats") as ObjectStats;
         playerStats.stamina = playerStats.maxStamina;
         playerStats.helth = playerStats.maxHelth;
         playerStats.mana = playerStats.maxMana;
@@ -30,7 +31,6 @@ public class PlayerData : MonoBehaviour
     {
         playerControl = gameObject.GetComponent("PlayerControl") as PlayerControl;
         statManipulate = gameObject.GetComponent("StatManipulate") as StatManipulate;
-        playerStats = gameObject.GetComponent("PlayerStats") as PlayerStats;
         cameraControl = gameObject.GetComponent("CameraControl") as CameraControl;
     }
     private void StatsRecavery()

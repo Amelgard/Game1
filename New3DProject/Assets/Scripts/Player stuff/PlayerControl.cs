@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private GameObject emp1, emp2;
-    public Vector3 lastPlayerPos;
-    private float lastDir;
+    private Vector3 lastPlayerPos;
+    private float lastDir, timer = 0.2f;
     public float test;
     public GameObject FindPlayer()
     {
@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour
     }
     private Vector3 MoveToDir(float m_objectSpeed, GameObject m_armature, float RotateAngle)
     {
-        float rotSpeed = 5;
+        float rotSpeed = 2.5f;
         m_armature.transform.rotation = Quaternion.Slerp(m_armature.transform.rotation, Quaternion.Euler(-90, RotateAngle, 0), rotSpeed * Time.deltaTime);
         if ((Input.GetAxis("Horizontal") != 0) || (Input.GetAxis("Vertical") != 0))
         {
@@ -73,44 +73,52 @@ public class PlayerControl : MonoBehaviour
     {
         // 1= руб 2 =прав-лев 3=кол 4=лев-прав
         int att = 0;
-        if (emp1 != null && Input.GetKeyUp(KeyCode.Mouse0))
+        if (emp1 != null)
         {
-            emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/sword"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
-            emp2.transform.LookAt(player.transform.position);
-            emp1.transform.LookAt(player.transform.position);
-            float rot1 = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
-            Vector3 pos1 = emp1.transform.position;
-            Vector3 pos2 = emp2.transform.position;
-            
-            //if()
-            test = rot1;
-            if (rot1 > -25 && rot1 < 25)
+            timer -= 1 * Time.deltaTime;
+            if (timer <= 0)
             {
-                if (Mathf.Abs(pos1.x - pos2.x) > Mathf.Abs(pos1.z - pos2.z))
+                emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
+                emp2.transform.LookAt(player.transform.position);
+                emp1.transform.LookAt(player.transform.position);
+                float rot1 = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
+                Vector3 pos1 = emp1.transform.position - player.transform.position;
+                Vector3 pos2 = emp2.transform.position - player.transform.position;
+
+                //if()
+                test = rot1;
+                if (rot1 > -25 && rot1 < 25)
                 {
-                    if (pos1.x > pos2.x)
-                        att = 3;
+                    if (Mathf.Abs(pos1.x - pos2.x) > Mathf.Abs(pos1.z - pos2.z))
+                    {
+                        if (Mathf.Abs(pos1.x) > Mathf.Abs(pos2.x))
+                            att = 3;
+                        else
+                            att = 1;
+                    }
                     else
-                        att = 1;
+                    {
+                        if (Mathf.Abs(pos1.z) > Mathf.Abs(pos2.z))
+                            att = 3;
+                        else
+                            att = 1;
+                    }
                 }
+                else if (rot1 > 0)
+                    att = 2;
                 else
-                {
-                    if (pos1.z > pos2.z)
-                        att = 3;
-                    else
-                        att = 1;
-                }
+                    att = 4;
+                SelectedWeapon m_selectedWeapon = player.GetComponent("SelectedWeapon") as SelectedWeapon;
+                WeaponAttak weaponAttak = m_selectedWeapon.selectedWeapon.GetComponent("WeaponAttak") as WeaponAttak;
+                weaponAttak.Attak();
+                Destroy(emp1);
+                Destroy(emp2);
+                timer = 0.2f;
             }
-            else if (rot1 > 0)
-                        att = 2;
-                    else
-                        att = 4;
-            Destroy(emp1);
-            Destroy(emp2);
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            emp1 = Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/sword"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
+            emp1 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
         }
         return att;
     }
