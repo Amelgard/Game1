@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject emp1, emp2;
     private Vector3 lastPlayerPos;
     private float lastDir, timer = 0.2f;
-    public float test;
+    public float test1, test2;
     public GameObject FindPlayer()
     {
         GameObject player;
@@ -81,13 +81,16 @@ public class PlayerControl : MonoBehaviour
                 emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
                 emp2.transform.LookAt(player.transform.position);
                 emp1.transform.LookAt(player.transform.position);
-                float rot1 = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
+                float rot;
+                if ((emp1.transform.eulerAngles.y > 270 && emp2.transform.eulerAngles.y < 90) || (emp2.transform.eulerAngles.y > 270 && emp1.transform.eulerAngles.y < 90))
+                    rot = emp2.transform.eulerAngles.y - emp1.transform.eulerAngles.y;
+                else
+                    rot = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
+                test1 = emp1.transform.eulerAngles.y;
+                test2 = emp2.transform.eulerAngles.y;
                 Vector3 pos1 = emp1.transform.position - player.transform.position;
                 Vector3 pos2 = emp2.transform.position - player.transform.position;
-
-                //if()
-                test = rot1;
-                if (rot1 > -25 && rot1 < 25)
+                if (rot > -15 && rot < 15)
                 {
                     if (Mathf.Abs(pos1.x - pos2.x) > Mathf.Abs(pos1.z - pos2.z))
                     {
@@ -104,7 +107,7 @@ public class PlayerControl : MonoBehaviour
                             att = 1;
                     }
                 }
-                else if (rot1 > 0)
+                else if (rot > 0)
                     att = 2;
                 else
                     att = 4;
