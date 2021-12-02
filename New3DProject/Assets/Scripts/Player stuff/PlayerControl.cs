@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    private GameObject emp1, emp2;
-    private Vector3 lastPlayerPos;
-    private float lastDir, timer = 0.2f;
+    Vector3 lastPlayerPos;
+    private float lastDir;
     public float test1, test2;
     public GameObject FindPlayer()
     {
@@ -29,7 +28,6 @@ public class PlayerControl : MonoBehaviour
             move.x -= rb.velocity.x;
             move.z -= rb.velocity.z;
             rb.velocity += move;
-            anim.SetInteger("attackDir", Attack(thisObject, mouseGlobalPos));
             MoveAnimation(anim, angle, thisObject.transform.position);
             //              Test zone!
             if (Input.GetKeyDown(KeyCode.E))
@@ -69,68 +67,11 @@ public class PlayerControl : MonoBehaviour
         else
             return new Vector3(0, 0, 0);
     }
-    private int Attack(GameObject player, Vector3 m_mouseGlobalPos)
-    {
-        // 1= руб 2 =прав-лев 3=кол 4=лев-прав
-        int att = 0;
-        if (emp1 != null)
-        {
-            timer -= 1 * Time.deltaTime;
-            if (timer <= 0)
-            {
-                emp2 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
-                emp2.transform.LookAt(player.transform.position);
-                emp1.transform.LookAt(player.transform.position);
-                float rot;
-                if ((emp1.transform.eulerAngles.y > 270 && emp2.transform.eulerAngles.y < 90) || (emp2.transform.eulerAngles.y > 270 && emp1.transform.eulerAngles.y < 90))
-                    rot = emp2.transform.eulerAngles.y - emp1.transform.eulerAngles.y;
-                else
-                    rot = emp1.transform.eulerAngles.y - emp2.transform.eulerAngles.y;
-                test1 = emp1.transform.eulerAngles.y;
-                test2 = emp2.transform.eulerAngles.y;
-                Vector3 pos1 = emp1.transform.position - player.transform.position;
-                Vector3 pos2 = emp2.transform.position - player.transform.position;
-                if (rot > -15 && rot < 15)
-                {
-                    if (Mathf.Abs(pos1.x - pos2.x) > Mathf.Abs(pos1.z - pos2.z))
-                    {
-                        if (Mathf.Abs(pos1.x) > Mathf.Abs(pos2.x))
-                            att = 3;
-                        else
-                            att = 1;
-                    }
-                    else
-                    {
-                        if (Mathf.Abs(pos1.z) > Mathf.Abs(pos2.z))
-                            att = 3;
-                        else
-                            att = 1;
-                    }
-                }
-                else if (rot > 0)
-                    att = 2;
-                else
-                    att = 4;
-                SelectedWeapon m_selectedWeapon = player.GetComponent("SelectedWeapon") as SelectedWeapon;
-                WeaponAttak weaponAttak = m_selectedWeapon.selectedWeapon.GetComponent("WeaponAttak") as WeaponAttak;
-                weaponAttak.Attak();
-                Destroy(emp1);
-                Destroy(emp2);
-                timer = 0.2f;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            emp1 = Instantiate(Resources.Load<GameObject>("Prefabs/Empty"), m_mouseGlobalPos, new Quaternion(0, 0, 0, 0));
-        }
-        return att;
-    }
     private Vector3 GetMousePosition(float playerY)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
         Vector3 mousePos;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         { }
         mousePos = new Vector3 (hit.point.x, playerY, hit.point.z);
         return mousePos;
