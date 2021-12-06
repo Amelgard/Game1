@@ -8,5 +8,6 @@ public class ObjectInventory : MonoBehaviour
     private void Start()
     {
         inventory = new Inventory();
+        inventory.AddItem((AllGameItems.GetItem(0)));
     }
 }

@@ -12,7 +12,7 @@ public class AllGameItems
             //sword
             case 0:
                 int damage =  Random.Range(10, 14) ;
-                item = new MaleWeaponItem("simpleSword", id, MaleWeaponItem.WeaponType.OneHandSword, damage, "Prefabs/Weapons/sword");
+                item = new MaleWeaponItem("simpleSword", id, MaleWeaponItem.WeaponType.OneHandSword, "Icons/Weapon/HoboSword", damage, "Prefabs/Weapons/sword");
                 return item;
             default:
                 Debug.LogError("Item with this Id don't exist!");

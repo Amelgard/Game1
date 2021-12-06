@@ -12,12 +12,14 @@ public class Item
     public string Name { get; set; }
     public int Id { get; }
     public ItemType itemType { get; }
+    public Sprite itemIcon { get; }
 
-    public Item(string name, int id, ItemType _itemType)
+    public Item(string name, int id, ItemType _itemType, string pathToIcon)
     {
         Name = name;
         Id = id;
         itemType = _itemType;
+        itemIcon = Resources.Load<Sprite>(pathToIcon);
     }
 }
 class MaleWeaponItem : Item
@@ -31,8 +33,8 @@ class MaleWeaponItem : Item
     public WeaponType weaponType { get; }
     public float damage { get; set; }
     public GameObject itemPrefab { get; }
-    public MaleWeaponItem(string name, int id, WeaponType _weaponType, float _damage, string pathToPrefab)
-        : base(name, id, Item.ItemType.MaleWeapon)
+    public MaleWeaponItem(string name, int id, WeaponType _weaponType, string pathToIcon, float _damage, string pathToPrefab)
+        : base(name, id, Item.ItemType.MaleWeapon, pathToIcon)
     {
         weaponType = _weaponType;
         damage = _damage;
