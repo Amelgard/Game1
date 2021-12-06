@@ -10,8 +10,6 @@ public class PlayerData : MonoBehaviour
     CameraControl cameraControl;
     private GameObject player;
     public Vector3 cameraOffset;
-    public GameObject test;
-    Inventory inventory;
     private void Awake()
     {
         IncludeScripts();
@@ -20,7 +18,6 @@ public class PlayerData : MonoBehaviour
         playerStats.stamina = playerStats.maxStamina;
         playerStats.helth = playerStats.maxHelth;
         playerStats.mana = playerStats.maxMana;
-        inventory = new Inventory();
     }
     private void Update()
     {

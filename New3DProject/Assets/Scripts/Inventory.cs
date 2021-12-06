@@ -17,6 +17,10 @@ public class Inventory
     {
         ItemList.RemoveAt(containerId);
     }
+    public int GetRange()
+    {
+        return ItemList.Count;
+    }
     public Item GetItem(int containerId)
     {
         return ItemList[containerId];
