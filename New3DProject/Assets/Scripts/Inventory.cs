@@ -25,4 +25,10 @@ public class Inventory
     {
         return ItemList[containerId];
     }
+    public void Swap(int containerA, int containerB)
+    {
+        Item tmp = ItemList[containerA];
+        ItemList[containerA] = ItemList[containerB];
+        ItemList[containerB] = tmp;
+    }
 }

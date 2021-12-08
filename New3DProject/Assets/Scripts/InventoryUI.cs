@@ -2,42 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class InventoryUI : MonoBehaviour
 {
     List<GameObject> containers;
     Inventory inventory;
     Inventory anotherInventory;
-    public Sprite icon;
     public GameObject _inventoryUI;
     bool inventoryIsActive;
     int maxContainers = 15;
+
+    GraphicRaycaster m_Raycaster;
+    EventSystem m_EventSystem;
     private void Start()
     {
         inventoryIsActive = false;
+        isReplasing = false;
         inventory = new Inventory();
         CreateContaners();
+
+        m_Raycaster = GetComponent<GraphicRaycaster>();
     }
     private void Update()
     {
         ShowInventory();
         GetAnotherInventory();
-
-
+        ReplaseContainer();
         //test
         if (Input.GetKeyDown(KeyCode.T))
         {
-            AddItem(AllGameItems.GetItem(Random.Range(0,2)));
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            RemoveItem(0);
+            AddItem(AllGameItems.GetItem(Random.Range(0, 2)));
         }
         //test
     }
     private void GetAnotherInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -46,7 +46,7 @@ public class InventoryUI : MonoBehaviour
                 {
                     anotherInventory = hit.transform.GetComponent<ObjectInventory>().inventory;
                 }
-            } 
+            }
         }
     }
     private void ShowInventory()
@@ -86,7 +86,7 @@ public class InventoryUI : MonoBehaviour
             RefreshItems();
         }
     }
-    private void RefreshItems() 
+    private void RefreshItems()
     {
         for (int i = 0; i < inventory.GetRange(); i++)
         {
@@ -98,4 +98,61 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    //
+    GameObject con1;
+    bool isReplasing;
+    private void ReplaseContainer()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && EventSystem.current.IsPointerOverGameObject()) 
+        {
+            con1 = GetTouchedContainer();
+            isReplasing = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isReplasing && con1 != null)
+        {
+            isReplasing = false;
+            GameObject con2 = GetTouchedContainer();
+            int containerIdA = 0;
+            int containerIdB = 0;
+            for (int i = 0; i < maxContainers; i++)
+            {
+                if (containers[i] == con1)
+                    containerIdA = i;
+            }
+            if (con2 == null)
+            {
+                RemoveItem(containerIdA);
+                RefreshItems();
+            }
+            else
+            {
+                for (int i = 0; i < maxContainers; i++)
+                {
+                    if (containers[i] == con2)
+                        containerIdB = i;
+                }
+                inventory.Swap(containerIdA,containerIdB);
+                RefreshItems();
+            }
+            con1 = null;
+        }
+    }
+    private GameObject GetTouchedContainer()
+    {
+        PointerEventData m_PointerEventData = new PointerEventData(m_EventSystem);
+        m_PointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        m_Raycaster.Raycast(m_PointerEventData, results);
+        foreach (RaycastResult result in results)
+        {
+            for (int i = 0; i < maxContainers; i++)
+            {
+                if (result.gameObject == containers[i])
+                {
+                    return result.gameObject;
+                }
+            }
+        }
+        return null;
+    }
 }
