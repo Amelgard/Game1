@@ -106,6 +106,7 @@ public class InventoryUI : MonoBehaviour
     IEnumerator ReplaseContainer()
     {
         GameObject con1 = null;
+        Vector3 conPos = Vector3.zero;
         bool isReplasing = false;
         while (true)
         {
@@ -114,36 +115,47 @@ public class InventoryUI : MonoBehaviour
             {
                 con1 = GetTouchedContainer();
                 if (con1 != null)
+                {
                     isReplasing = true;
+                    con1.GetComponent<Image>().raycastTarget = false;
+                    con1.transform.SetSiblingIndex(maxContainers);
+                    conPos = con1.transform.position;
+                }
             }
-            if (Input.GetKeyUp(KeyCode.Mouse0) && isReplasing)
+            if (isReplasing)
             {
+                con1.transform.position = Input.mousePosition;
+                if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
 
-                GameObject con2 = GetTouchedContainer();
-                int containerIdA = -1;
-                int containerIdB = -1;
-                for (int i = 0; i < inventory.GetRange(); i++)
-                {
-                    if (containers[i] == con1)
-                        containerIdA = i;
-                    if (containers[i] == con2)
-                        containerIdB = i;
-                }
-                if (containerIdA >= 0)
-                {
-                    if (!EventSystem.current.IsPointerOverGameObject())
+                    GameObject con2 = GetTouchedContainer();
+                    int containerIdA = -1;
+                    int containerIdB = -1;
+                    for (int i = 0; i < inventory.GetRange(); i++)
                     {
-                        RemoveItem(containerIdA);
-                        RefreshItems();
+                        if (containers[i] == con1)
+                            containerIdA = i;
+                        if (containers[i] == con2)
+                            containerIdB = i;
                     }
-                    else if (con2 != null && containerIdB >= 0)
+                    if (containerIdA >= 0)
                     {
-                        inventory.Swap(containerIdA, containerIdB);
-                        RefreshItems();
+                        if (!EventSystem.current.IsPointerOverGameObject())
+                        {
+                            RemoveItem(containerIdA);
+                            RefreshItems();
+                        }
+                        else if (con2 != null && containerIdB >= 0)
+                        {
+                            inventory.Swap(containerIdA, containerIdB);
+                            RefreshItems();
+                        }
                     }
+                    con1.transform.position = conPos;
+                    con1.GetComponent<Image>().raycastTarget = true;
+                    con1 = null;
+                    isReplasing = false;
                 }
-                con1 = null;
-                isReplasing = false;
             }
         }
     }
