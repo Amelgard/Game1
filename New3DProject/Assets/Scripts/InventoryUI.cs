@@ -17,7 +17,6 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventoryIsActive = false;
-        isReplasing = false;
         inventory = new Inventory();
         CreateContaners();
 
@@ -55,6 +54,10 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryIsActive = !inventoryIsActive;
             _inventoryUI.SetActive(inventoryIsActive);
+            if (inventoryIsActive)
+                StartCoroutine(ReplaseContainer());
+            else
+                StopCoroutine(ReplaseContainer());
         }
     }
     private void CreateContaners()
@@ -99,42 +102,49 @@ public class InventoryUI : MonoBehaviour
     }
 
     //
-    GameObject con1;
-    bool isReplasing;
-    private void ReplaseContainer()
+    
+    IEnumerator ReplaseContainer()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && EventSystem.current.IsPointerOverGameObject()) 
+        GameObject con1 = null;
+        bool isReplasing = false;
+        while (true)
         {
-            con1 = GetTouchedContainer();
-            isReplasing = true;
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isReplasing && con1 != null)
-        {
-            isReplasing = false;
-            GameObject con2 = GetTouchedContainer();
-            int containerIdA = 0;
-            int containerIdB = 0;
-            for (int i = 0; i < maxContainers; i++)
+            yield return null;
+            if (Input.GetKeyDown(KeyCode.Mouse0) && EventSystem.current.IsPointerOverGameObject())
             {
-                if (containers[i] == con1)
-                    containerIdA = i;
+                con1 = GetTouchedContainer();
+                if (con1 != null)
+                    isReplasing = true;
             }
-            if (con2 == null)
+            if (Input.GetKeyUp(KeyCode.Mouse0) && isReplasing)
             {
-                RemoveItem(containerIdA);
-                RefreshItems();
-            }
-            else
-            {
-                for (int i = 0; i < maxContainers; i++)
+
+                GameObject con2 = GetTouchedContainer();
+                int containerIdA = -1;
+                int containerIdB = -1;
+                for (int i = 0; i < inventory.GetRange(); i++)
                 {
+                    if (containers[i] == con1)
+                        containerIdA = i;
                     if (containers[i] == con2)
                         containerIdB = i;
                 }
-                inventory.Swap(containerIdA,containerIdB);
-                RefreshItems();
+                if (containerIdA >= 0)
+                {
+                    if (!EventSystem.current.IsPointerOverGameObject())
+                    {
+                        RemoveItem(containerIdA);
+                        RefreshItems();
+                    }
+                    else if (con2 != null && containerIdB >= 0)
+                    {
+                        inventory.Swap(containerIdA, containerIdB);
+                        RefreshItems();
+                    }
+                }
+                con1 = null;
+                isReplasing = false;
             }
-            con1 = null;
         }
     }
     private GameObject GetTouchedContainer()
