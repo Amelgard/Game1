@@ -8,6 +8,14 @@ public class ObjectInventory : MonoBehaviour
     private void Start()
     {
         inventory = new Inventory();
-        inventory.AddItem((AllGameItems.GetItem(0)));
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            inventory.AddItem(AllGameItems.GetItem(Random.Range(0, 2)));
+        }
+    }
+
+
 }

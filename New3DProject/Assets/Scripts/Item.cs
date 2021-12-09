@@ -12,14 +12,14 @@ public class Item
     public string Name { get; set; }
     public int Id { get; }
     public ItemType itemType { get; }
-    public Sprite itemIcon { get; }
+    public Sprite ItemIcon { get; }
 
     public Item(string name, int id, ItemType _itemType, string pathToIcon)
     {
         Name = name;
         Id = id;
         itemType = _itemType;
-        itemIcon = Resources.Load<Sprite>(pathToIcon);
+        ItemIcon = Resources.Load<Sprite>(pathToIcon);
     }
 }
 class MaleWeaponItem : Item
