@@ -14,23 +14,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        movement();
         Abilities();
         death();
-    }
-    public void movement()
-    {
-        _PS.gameObject.transform.Translate(movementVector * _PS.GetComponent<PlayerStats>().Speed*Time.fixedDeltaTime);
-    }
-    private Vector3 movementVector
-    {
-        get
-        {
-            var horizontal = Input.GetAxis("Horizontal");
-            var vertical = Input.GetAxis("Vertical");
-
-            return new Vector3(horizontal, 0.0f, vertical);
-        }
     }
     public void Abilities()
     {

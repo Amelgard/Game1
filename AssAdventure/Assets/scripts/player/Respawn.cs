@@ -13,11 +13,6 @@ public class Respawn : MonoBehaviour
     public GameObject PlayerStatUI;
     public GameObject RespawnButton;
     public GameObject PlayerPrefab;
-    private GameObject SpawnPlayer;
-
-    public void Awake()
-    {
-    }
     void Update()
     {
         Scan();
@@ -36,14 +31,13 @@ public class Respawn : MonoBehaviour
         if (scan==false)
         {
             RespawnButton.GetComponent<Button>().onClick.AddListener(RespawnPlayer);
-            
         }
     }
     public void RespawnPlayer()
     {
         if (scan==false) {
-            Vector3 resp = new Vector3(0, 2, -3);
-            SpawnPlayer = Instantiate(PlayerPrefab, resp, Quaternion.identity) as GameObject;
+            Vector3 resp = transform.position;
+            Instantiate(PlayerPrefab, resp, Quaternion.identity);
             PlayerStatUI.SetActive(true);
             respawnMenu.SetActive(false);
             scan = true;
