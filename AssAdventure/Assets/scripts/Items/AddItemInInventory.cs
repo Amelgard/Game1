@@ -7,13 +7,11 @@ public class AddItemInInventory : MonoBehaviour
 {
     [SerializeField] private Item item;
     [SerializeField] private int amount = 1;
-
     private void OnTriggerEnter(Collider other)
     {
         if (!item) return;
 
-        var inventory = other.GetComponent<PlayerInventory>();
-        if (inventory)
+        if (other.gameObject.TryGetComponent<PlayerInventory>(out PlayerInventory inventory))
         {
             if (inventory.AddItems(item,amount))
             {

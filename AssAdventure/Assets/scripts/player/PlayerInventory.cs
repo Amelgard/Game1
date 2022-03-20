@@ -21,23 +21,39 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int size = 4;
     [SerializeField] public UnityEvent OnInventoryChanged;
 
+    [SerializeField] private float maxWeight = 20;
+    [SerializeField] private float currentWeight;
+
     public bool AddItems(Item item, int amount = 1)
     {
-        foreach (InventorySlot slot in items)
-        {
-            if (slot.item.id == item.id)
+        if (!(currentWeight + (item.weight * amount) <= maxWeight))
+            return false;
+
+        if (item.stackable)
+            foreach (InventorySlot slot in items)
             {
-                slot.amount += amount;
-                OnInventoryChanged.Invoke();
-                return true;
+                if (slot.item.id == item.id)
+                {
+                    slot.amount += amount;
+                    OnInventoryChanged.Invoke();
+                    UpdateCurrentWeight();
+                    return true;
+                }
+                if (items.Count >= size) return false;
             }
-        }
-        if (items.Count >= size) return false;
 
         InventorySlot new_slot = new InventorySlot(item, amount);
         items.Add(new_slot);
         OnInventoryChanged.Invoke();
+        UpdateCurrentWeight();
         return true;
+    }
+    private void UpdateCurrentWeight()
+    {
+        var s = 0f;
+        foreach (InventorySlot slot in items)
+            s += (slot.item.weight * slot.amount);
+        currentWeight = s;
     }
     public Item GetItem(int i)
     {
