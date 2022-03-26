@@ -11,7 +11,8 @@ public class AddItemInInventory : MonoBehaviour
     {
         if (!item) return;
 
-        if (other.gameObject.TryGetComponent<PlayerInventory>(out PlayerInventory inventory))
+        var inventory = other.GetComponent<PlayerInventory>();
+        if (inventory)
         {
             if (inventory.AddItems(item,amount))
             {

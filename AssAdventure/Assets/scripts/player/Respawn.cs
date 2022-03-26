@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class Respawn : MonoBehaviour
 {
-
     public bool scan = true;
-
     public GameObject respawnMenu;
     public GameObject PlayerStatUI;
     public GameObject RespawnButton;
     public GameObject PlayerPrefab;
+
     void Update()
     {
         Scan();
+        
     }
 
     public void Scan()
@@ -31,16 +31,19 @@ public class Respawn : MonoBehaviour
         if (scan==false)
         {
             RespawnButton.GetComponent<Button>().onClick.AddListener(RespawnPlayer);
+            
         }
     }
     public void RespawnPlayer()
     {
         if (scan==false) {
-            Vector3 resp = transform.position;
+            Vector3 resp = new Vector3(0, 2, -3);
             Instantiate(PlayerPrefab, resp, Quaternion.identity);
             PlayerStatUI.SetActive(true);
             respawnMenu.SetActive(false);
             scan = true;
         }
     }
+    
+
 }
